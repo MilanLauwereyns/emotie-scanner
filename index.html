@@ -17,54 +17,87 @@
 
   <style>
 
+    * {
+
+      margin: 0;
+
+      padding: 0;
+
+      box-sizing: border-box;
+    }
+
     body {
 
       font-family: Arial, sans-serif;
 
-      background: #111827;
+      background: #0f172a;
 
       color: white;
 
-      text-align: center;
+      display: flex;
 
-      padding: 40px;
+      justify-content: center;
+
+      padding: 30px;
     }
 
-    button {
+    .container {
 
-      padding: 12px 20px;
+      width: 100%;
 
-      border: none;
-
-      border-radius: 12px;
-
-      background: #2563eb;
-
-      color: white;
-
-      cursor: pointer;
-
-      margin-top: 20px;
-    }
-
-    .hidden {
-
-      display: none;
+      max-width: 520px;
     }
 
     .card {
 
-      background: #1f2937;
+      background: #1e293b;
 
-      padding: 30px;
+      border-radius: 24px;
 
-      border-radius: 20px;
-
-      max-width: 500px;
-
-      margin: auto;
+      padding: 25px;
 
       margin-bottom: 20px;
+
+      box-shadow:
+        0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    h1 {
+
+      font-size: 32px;
+
+      margin-bottom: 10px;
+    }
+
+    p {
+
+      opacity: 0.8;
+    }
+
+    button {
+
+      border: none;
+
+      background: #3b82f6;
+
+      color: white;
+
+      padding: 12px 18px;
+
+      border-radius: 14px;
+
+      cursor: pointer;
+
+      margin-top: 15px;
+
+      transition: 0.2s;
+
+      font-size: 15px;
+    }
+
+    button:hover {
+
+      transform: scale(1.04);
     }
 
     video {
@@ -80,22 +113,21 @@
 
     .emoji {
 
-      font-size: 70px;
+      font-size: 75px;
 
       margin-top: 20px;
     }
 
-    .history-item {
+    #result {
 
-      background: #374151;
+      margin-top: 10px;
+    }
 
-      padding: 15px;
-
-      border-radius: 12px;
+    #confidence {
 
       margin-top: 10px;
 
-      text-align: left;
+      opacity: 0.7;
     }
 
     .manual-moods {
@@ -108,94 +140,123 @@
       margin: 5px;
     }
 
+    .history-item {
+
+      background: white;
+
+      color: black;
+
+      padding: 15px;
+
+      border-radius: 16px;
+
+      margin-top: 12px;
+
+      text-align: left;
+    }
+
+    .history-item small {
+
+      color: #555;
+    }
+
+    .hidden {
+
+      display: none;
+    }
+
   </style>
 
 </head>
 <body>
 
-  <div
-    id="startScreen"
-    class="card"
-  >
-
-    <h1>
-      Mood Scanner
-    </h1>
-
-    <p>
-      Scan je gezicht en ontdek je mood 😎
-    </p>
-
-    <button onclick="startScanner()">
-      Start Scan
-    </button>
-
-  </div>
-
-  <div
-    id="scanner"
-    class="card hidden"
-  >
-
-    <h2>
-      Scanner actief
-    </h2>
-
-    <video
-      id="webcam"
-      autoplay
-      playsinline
-      muted
-    ></video>
+  <div class="container">
 
     <div
-      class="emoji"
-      id="emoji"
+      id="startScreen"
+      class="card"
     >
-      🙂
-    </div>
 
-    <h2 id="result">
-      Wachten op detectie...
-    </h2>
+      <h1>
+        Mood Scanner
+      </h1>
 
-    <p id="confidence">
-      Confidence: 0%
-    </p>
+      <p>
+        Scan je gezicht en ontdek je mood 😎
+      </p>
 
-    <div class="manual-moods">
-
-      <button onclick="manualMood('blij')">
-        😎 Blij
-      </button>
-
-      <button onclick="manualMood('moe')">
-        😴 Moe
-      </button>
-
-      <button onclick="manualMood('gestrest')">
-        😵 Gestrest
-      </button>
-
-      <button onclick="manualMood('verdrietig')">
-        🥺 Verdrietig
+      <button onclick="startScanner()">
+        Start Scan
       </button>
 
     </div>
 
-  </div>
+    <div
+      id="scanner"
+      class="card hidden"
+    >
 
-  <div class="card">
+      <h2>
+        Scanner actief
+      </h2>
 
-    <h2>
-      Geschiedenis
-    </h2>
+      <video
+        id="webcam"
+        autoplay
+        playsinline
+        muted
+      ></video>
 
-    <div id="historyList"></div>
+      <div
+        class="emoji"
+        id="emoji"
+      >
+        🙂
+      </div>
 
-    <button onclick="clearHistory()">
-      Reset geschiedenis
-    </button>
+      <h2 id="result">
+        Wachten op detectie...
+      </h2>
+
+      <p id="confidence">
+        Confidence: 0%
+      </p>
+
+      <div class="manual-moods">
+
+        <button onclick="manualMood('blij')">
+          😎 Blij
+        </button>
+
+        <button onclick="manualMood('moe')">
+          😴 Moe
+        </button>
+
+        <button onclick="manualMood('gestrest')">
+          😵 Gestrest
+        </button>
+
+        <button onclick="manualMood('verdrietig')">
+          🥺 Verdrietig
+        </button>
+
+      </div>
+
+    </div>
+
+    <div class="card">
+
+      <h2>
+        Geschiedenis
+      </h2>
+
+      <div id="historyList"></div>
+
+      <button onclick="clearHistory()">
+        Reset geschiedenis
+      </button>
+
+    </div>
 
   </div>
 
