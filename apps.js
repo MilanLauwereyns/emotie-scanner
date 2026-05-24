@@ -339,6 +339,8 @@ function saveMood(
   );
 
   renderHistory();
+
+  renderStats();
 }
 
 function renderHistory() {
@@ -357,6 +359,7 @@ function renderHistory() {
     moods
       .slice()
       .reverse()
+      .slice(0, 10)
       .map(m => `
 
         <div class="history-item">
@@ -385,6 +388,42 @@ function renderHistory() {
       .join("");
 }
 
+function renderStats() {
+
+  const statsBox =
+    document.getElementById(
+      "stats"
+    );
+
+  const moods =
+    JSON.parse(
+      localStorage.getItem("moods")
+    ) || [];
+
+  const stats = {};
+
+  moods.forEach((m) => {
+
+    stats[m.mood] =
+      (stats[m.mood] || 0) + 1;
+  });
+
+  statsBox.innerHTML = "";
+
+  for (const mood in stats) {
+
+    statsBox.innerHTML += `
+
+      <div class="stats-item">
+
+        ${mood}: ${stats[mood]} scans
+
+      </div>
+
+    `;
+  }
+}
+
 function clearHistory() {
 
   localStorage.removeItem(
@@ -392,9 +431,13 @@ function clearHistory() {
   );
 
   renderHistory();
+
+  renderStats();
 }
 
 window.onload = () => {
 
   renderHistory();
+
+  renderStats();
 };
