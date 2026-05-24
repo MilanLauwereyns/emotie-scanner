@@ -63,6 +63,8 @@
       max-width: 500px;
 
       margin: auto;
+
+      margin-bottom: 20px;
     }
 
     video {
@@ -81,6 +83,19 @@
       font-size: 70px;
 
       margin-top: 20px;
+    }
+
+    .history-item {
+
+      background: #374151;
+
+      padding: 15px;
+
+      border-radius: 12px;
+
+      margin-top: 10px;
+
+      text-align: left;
     }
 
   </style>
@@ -137,6 +152,20 @@
     <p id="confidence">
       Confidence: 0%
     </p>
+
+  </div>
+
+  <div class="card">
+
+    <h2>
+      Geschiedenis
+    </h2>
+
+    <div id="historyList"></div>
+
+    <button onclick="clearHistory()">
+      Reset geschiedenis
+    </button>
 
   </div>
 

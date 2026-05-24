@@ -1,8 +1,10 @@
-
 const URL = "./model/";
 
 let model;
 let webcam;
+
+let lastMood = "";
+let lastSaved = 0;
 
 async function startScanner() {
 
@@ -139,8 +141,6 @@ function showMood(
         "Mood gevonden";
   }
 
-  /* UI */
-
   document
     .getElementById("emoji")
     .innerText = emoji;
@@ -156,4 +156,116 @@ function showMood(
       Math.round(
         confidence * 100
       ) + "%";
+
+  const now = Date.now();
+
+  if (
+    mood !== lastMood ||
+    now - lastSaved > 5000
+  ) {
+
+    saveMood(
+      mood,
+      message,
+      confidence
+    );
+
+    lastMood = mood;
+
+    lastSaved = now;
+  }
 }
+
+function saveMood(
+  mood,
+  message,
+  confidence
+) {
+
+  const moods =
+    JSON.parse(
+      localStorage.getItem("moods")
+    ) || [];
+
+  moods.push({
+
+    mood,
+
+    message,
+
+    confidence:
+      Math.round(
+        confidence * 100
+      ),
+
+    date:
+      new Date()
+        .toLocaleString()
+
+  });
+
+  localStorage.setItem(
+    "moods",
+    JSON.stringify(moods)
+  );
+
+  renderHistory();
+}
+
+function renderHistory() {
+
+  const history =
+    document.getElementById(
+      "historyList"
+    );
+
+  const moods =
+    JSON.parse(
+      localStorage.getItem("moods")
+    ) || [];
+
+  history.innerHTML =
+    moods
+      .slice()
+      .reverse()
+      .map(m => `
+
+        <div class="history-item">
+
+          <strong>
+            ${m.mood}
+          </strong>
+
+          <br><br>
+
+          ${m.message}
+
+          <br><br>
+
+          ${m.confidence}%
+
+          <br><br>
+
+          <small>
+            ${m.date}
+          </small>
+
+        </div>
+
+      `)
+      .join("");
+}
+
+function clearHistory() {
+
+  localStorage.removeItem(
+    "moods"
+  );
+
+  renderHistory();
+}
+
+window.onload = () => {
+
+  renderHistory();
+};
