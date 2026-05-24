@@ -3,10 +3,20 @@ const URL = "./model/";
 let model;
 let webcam;
 
+let isScanning = false;
+
 let lastMood = "";
 let lastSaved = 0;
 
+let detectionStart = Date.now();
+
+const MIN_CONFIDENCE = 0.35;
+
 async function startScanner() {
+
+  isScanning = true;
+
+  detectionStart = Date.now();
 
   document
     .getElementById("startScreen")
@@ -53,6 +63,8 @@ async function startScanner() {
 
 async function loop() {
 
+  if (!isScanning) return;
+
   try {
 
     const prediction =
@@ -72,10 +84,53 @@ async function loop() {
       }
     });
 
-    showMood(
-      highest.className,
-      highest.probability
-    );
+    if (
+      highest.probability >=
+      MIN_CONFIDENCE
+    ) {
+
+      detectionStart = Date.now();
+
+      showMood(
+        highest.className,
+        highest.probability
+      );
+
+    } else {
+
+      document
+        .getElementById("emoji")
+        .innerText = "🧐";
+
+      document
+        .getElementById("result")
+        .innerText =
+          "Geen emotie gevonden";
+
+      document
+        .getElementById("confidence")
+        .innerText =
+          Math.round(
+            highest.probability * 100
+          ) + "%";
+
+      const seconds =
+        (Date.now() -
+          detectionStart) / 1000;
+
+      if (seconds >= 10) {
+
+        saveMood(
+          "blij",
+          "Automatisch blij opgeslagen",
+          1
+        );
+
+        stopScanner();
+
+        return;
+      }
+    }
 
   } catch (err) {
 
@@ -83,6 +138,31 @@ async function loop() {
   }
 
   requestAnimationFrame(loop);
+}
+
+function stopScanner() {
+
+  isScanning = false;
+
+  if (
+    webcam &&
+    webcam.srcObject
+  ) {
+
+    webcam.srcObject
+      .getTracks()
+      .forEach(track =>
+        track.stop()
+      );
+  }
+
+  document
+    .getElementById("scanner")
+    .classList.add("hidden");
+
+  document
+    .getElementById("startScreen")
+    .classList.remove("hidden");
 }
 
 function showMood(
