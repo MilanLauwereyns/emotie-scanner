@@ -13,6 +13,8 @@
     Mood Scanner
   </title>
 
+  <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
+
   <style>
 
     body {
@@ -74,6 +76,13 @@
       background: black;
     }
 
+    .emoji {
+
+      font-size: 70px;
+
+      margin-top: 20px;
+    }
+
   </style>
 
 </head>
@@ -107,13 +116,27 @@
       Scanner actief
     </h2>
 
-  
     <video
       id="webcam"
       autoplay
       playsinline
       muted
     ></video>
+
+    <div
+      class="emoji"
+      id="emoji"
+    >
+      🙂
+    </div>
+
+    <h2 id="result">
+      Wachten op detectie...
+    </h2>
+
+    <p id="confidence">
+      Confidence: 0%
+    </p>
 
   </div>
 
