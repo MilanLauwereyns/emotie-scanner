@@ -13,20 +13,96 @@
     Mood Scanner
   </title>
 
+  <style>
+
+    body {
+
+      font-family: Arial, sans-serif;
+
+      background: #111827;
+
+      color: white;
+
+      text-align: center;
+
+      padding: 40px;
+    }
+
+    button {
+
+      padding: 12px 20px;
+
+      border: none;
+
+      border-radius: 12px;
+
+      background: #2563eb;
+
+      color: white;
+
+      cursor: pointer;
+
+      margin-top: 20px;
+    }
+
+    .hidden {
+
+      display: none;
+    }
+
+    .card {
+
+      background: #1f2937;
+
+      padding: 30px;
+
+      border-radius: 20px;
+
+      max-width: 500px;
+
+      margin: auto;
+    }
+
+  </style>
+
 </head>
 <body>
 
-  <h1>
-    Mood Scanner Milan
-  </h1>
+  <div
+    id="startScreen"
+    class="card"
+  >
 
-  <p>
-    Scan je gezicht en ontdek je mood.
-  </p>
+    <h1>
+      Mood Scanner
+    </h1>
 
-  <button>
-    Start Scan
-  </button>
+    <p>
+      Scan je gezicht en ontdek je mood 😎
+    </p>
+
+    <button onclick="startScanner()">
+      Start Scan
+    </button>
+
+  </div>
+
+  <div
+    id="scanner"
+    class="card hidden"
+  >
+
+    <h2>
+      Scanner actief
+    </h2>
+
+    <p>
+      Camera wordt binnenkort toegevoegd...
+    </p>
+
+  </div>
+
+  <script src="app.js"></script>
 
 </body>
 </html>
