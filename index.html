@@ -74,6 +74,28 @@
 
       box-shadow:
         0 10px 35px rgba(0,0,0,0.35);
+
+      animation:
+        fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+
+      from {
+
+        opacity: 0;
+
+        transform:
+          translateY(10px);
+      }
+
+      to {
+
+        opacity: 1;
+
+        transform:
+          translateY(0);
+      }
     }
 
     h1 {
@@ -121,6 +143,9 @@
       font-size: 15px;
 
       font-weight: bold;
+
+      box-shadow:
+        0 5px 15px rgba(37,99,235,0.3);
     }
 
     button:hover {
@@ -138,6 +163,9 @@
           #ef4444,
           #dc2626
         );
+
+      box-shadow:
+        0 5px 15px rgba(239,68,68,0.3);
     }
 
     video {
@@ -152,13 +180,46 @@
 
       border:
         2px solid rgba(255,255,255,0.1);
+
+      box-shadow:
+        0 0 25px rgba(59,130,246,0.2);
+    }
+
+    .scanner-status {
+
+      margin-top: 15px;
+
+      color: #38bdf8;
+
+      font-size: 14px;
     }
 
     .emoji {
 
-      font-size: 80px;
+      font-size: 82px;
 
       margin-top: 20px;
+
+      animation:
+        pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0% {
+
+        transform: scale(1);
+      }
+
+      50% {
+
+        transform: scale(1.08);
+      }
+
+      100% {
+
+        transform: scale(1);
+      }
     }
 
     #result {
@@ -205,6 +266,9 @@
 
       box-shadow:
         0 4px 15px rgba(0,0,0,0.1);
+
+      animation:
+        fadeIn 0.4s ease;
     }
 
     .history-item small {
@@ -212,16 +276,26 @@
       color: #666;
     }
 
+    .stats-grid {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(2,1fr);
+
+      gap: 10px;
+    }
+
     .stats-item {
 
       background:
         rgba(255,255,255,0.08);
 
-      padding: 15px;
+      padding: 16px;
 
       border-radius: 16px;
 
-      margin-top: 10px;
+      text-align: center;
 
       border:
         1px solid rgba(255,255,255,0.08);
@@ -243,7 +317,8 @@
 
     #historyList::-webkit-scrollbar-thumb {
 
-      background: rgba(255,255,255,0.2);
+      background:
+        rgba(255,255,255,0.2);
 
       border-radius: 10px;
     }
@@ -287,6 +362,10 @@
       <h2>
         Scanner actief
       </h2>
+
+      <p class="scanner-status">
+        AI analyseert je emoties...
+      </p>
 
       <video
         id="webcam"
@@ -345,7 +424,10 @@
         Statistieken
       </h2>
 
-      <div id="stats"></div>
+      <div
+        id="stats"
+        class="stats-grid"
+      ></div>
 
     </div>
 

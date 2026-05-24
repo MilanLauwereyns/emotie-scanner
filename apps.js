@@ -416,7 +416,13 @@ function renderStats() {
 
       <div class="stats-item">
 
-        ${mood}: ${stats[mood]} scans
+        <strong>
+          ${mood}
+        </strong>
+
+        <br><br>
+
+        ${stats[mood]} scans
 
       </div>
 
