@@ -63,6 +63,17 @@
       margin: auto;
     }
 
+    video {
+
+      width: 100%;
+
+      border-radius: 20px;
+
+      margin-top: 20px;
+
+      background: black;
+    }
+
   </style>
 
 </head>
@@ -96,9 +107,13 @@
       Scanner actief
     </h2>
 
-    <p>
-      Camera wordt binnenkort toegevoegd...
-    </p>
+  
+    <video
+      id="webcam"
+      autoplay
+      playsinline
+      muted
+    ></video>
 
   </div>
 
