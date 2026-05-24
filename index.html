@@ -2,138 +2,134 @@
 <html lang="nl">
 <head>
 
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
 
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0"
-  >
+  />
 
-  <title>
-    Mood Scanner
-  </title>
+  <title>Mood Scanner</title>
 
   <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
 
-  <link
-    rel="stylesheet"
-    href="style.css"
-  >
+  <link rel="stylesheet" href="style.css" />
 
 </head>
 <body>
 
   <div class="container">
 
-    <div
-      id="startScreen"
-      class="card"
-    >
+   
 
-      <h1>
-        Mood Scanner
-      </h1>
+    <div class="card">
 
-      <p>
-        Scan je gezicht en ontdek je mood 😎
-      </p>
+    
 
-      <button onclick="startScanner()">
-        Start Scan
-      </button>
+      <div class="logo">
+
+        DOOR<br>
+        STUDENTEN<br>
+        VAN
+
+        <h1>
+          THOMAS MORE
+        </h1>
+
+      </div>
+
+      
+
+      <div class="inner-box">
+
+       
+
+        <div id="startScreen">
+
+          <div class="emoji">
+            ❓
+          </div>
+
+          <button onclick="startScanner()">
+            SCAN JE MOOD
+          </button>
+
+        </div>
+
+     
+
+        <div
+          id="scanner"
+          class="hidden"
+        >
+
+          <video
+            id="webcam"
+            autoplay
+            playsinline
+            muted
+          ></video>
+
+          <div
+            class="emoji"
+            id="emoji"
+          >
+            🙂
+          </div>
+
+          <h2 id="result">
+            Wachten op detectie...
+          </h2>
+
+          <p id="confidence">
+            Confidence: 0%
+          </p>
+
+       
+
+          <div class="manual-moods">
+
+            <button onclick="manualMood('blij')">
+              😎 Blij
+            </button>
+
+            <button onclick="manualMood('moe')">
+              😴 Moe
+            </button>
+
+            <button onclick="manualMood('gestrest')">
+              😵 Gestrest
+            </button>
+
+            <button onclick="manualMood('verdrietig')">
+              🥺 Verdrietig
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
 
     </div>
 
-    <div
-      id="scanner"
-      class="card hidden"
-    >
+   
 
-      <div class="scanner-top">
+    <div class="history">
+
+      <div class="card">
 
         <h2>
-          Scanner actief
+          Geschiedenis
         </h2>
 
-        <div class="live-dot"></div>
+        <div id="historyList"></div>
 
-      </div>
-
-      <video
-        id="webcam"
-        autoplay
-        playsinline
-        muted
-      ></video>
-
-      <div
-        class="emoji"
-        id="emoji"
-      >
-        🙂
-      </div>
-
-      <h2 id="result">
-        Wachten op detectie...
-      </h2>
-
-      <p id="confidence">
-        Confidence: 0%
-      </p>
-
-      <div class="manual-moods">
-
-        <button onclick="manualMood('blij')">
-          😎 Blij
-        </button>
-
-        <button onclick="manualMood('moe')">
-          😴 Moe
-        </button>
-
-        <button onclick="manualMood('gestrest')">
-          😵 Gestrest
-        </button>
-
-        <button onclick="manualMood('verdrietig')">
-          🥺 Verdrietig
+        <button onclick="clearHistory()">
+          Reset geschiedenis
         </button>
 
       </div>
-
-      <button
-        class="stop-btn"
-        onclick="stopScanner()"
-      >
-        Stop Scan
-      </button>
-
-    </div>
-
-    <div class="card">
-
-      <h2>
-        Statistieken
-      </h2>
-
-      <div
-        id="stats"
-        class="stats-grid"
-      ></div>
-
-    </div>
-
-    <div class="card">
-
-      <h2>
-        Geschiedenis
-      </h2>
-
-      <div id="historyList"></div>
-
-      <button onclick="clearHistory()">
-        Reset geschiedenis
-      </button>
 
     </div>
 
