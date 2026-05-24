@@ -176,6 +176,55 @@ function showMood(
   }
 }
 
+function manualMood(mood) {
+
+  const moods = {
+
+    blij: [
+      "😎",
+      "Je bent blij vandaag"
+    ],
+
+    moe: [
+      "😴",
+      "Je lijkt moe"
+    ],
+
+    gestrest: [
+      "😵",
+      "Je lijkt gestrest"
+    ],
+
+    verdrietig: [
+      "🥺",
+      "Kop op 💛"
+    ]
+
+  };
+
+  const data =
+    moods[mood];
+
+  document
+    .getElementById("emoji")
+    .innerText = data[0];
+
+  document
+    .getElementById("result")
+    .innerText = data[1];
+
+  document
+    .getElementById("confidence")
+    .innerText =
+      "Handmatig toegevoegd";
+
+  saveMood(
+    mood,
+    data[1],
+    1
+  );
+}
+
 function saveMood(
   mood,
   message,

@@ -98,6 +98,16 @@
       text-align: left;
     }
 
+    .manual-moods {
+
+      margin-top: 20px;
+    }
+
+    .manual-moods button {
+
+      margin: 5px;
+    }
+
   </style>
 
 </head>
@@ -152,6 +162,26 @@
     <p id="confidence">
       Confidence: 0%
     </p>
+
+    <div class="manual-moods">
+
+      <button onclick="manualMood('blij')">
+        😎 Blij
+      </button>
+
+      <button onclick="manualMood('moe')">
+        😴 Moe
+      </button>
+
+      <button onclick="manualMood('gestrest')">
+        😵 Gestrest
+      </button>
+
+      <button onclick="manualMood('verdrietig')">
+        🥺 Verdrietig
+      </button>
+
+    </div>
 
   </div>
 
