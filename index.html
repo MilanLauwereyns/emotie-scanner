@@ -105,6 +105,11 @@
       transform: scale(1.04);
     }
 
+    .stop-btn {
+
+      background: #ef4444;
+    }
+
     video {
 
       width: 100%;
@@ -174,6 +179,13 @@
       border-radius: 14px;
 
       margin-top: 10px;
+    }
+
+    #historyList {
+
+      max-height: 400px;
+
+      overflow-y: auto;
     }
 
     .hidden {
@@ -257,6 +269,13 @@
         </button>
 
       </div>
+
+      <button
+        class="stop-btn"
+        onclick="stopScanner()"
+      >
+        Stop Scan
+      </button>
 
     </div>
 
